@@ -9,12 +9,12 @@ const initialState = {
 
 export const getAllRamens = createAsyncThunk("ramens/getAllRamens", async (id = null, { rejectWithValue }) => {
     try {
-        const response = await axios.get('/api/getramens');
+        const response = await axios.get('/api/ramens/getallramens');
         return response.data;
     } catch (err) {
         return rejectWithValue(err.response.data);
     }
-})
+});
 
 const ramenSlice = createSlice({
     name: "ramens",

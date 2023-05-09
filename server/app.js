@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('./db');
 const Ramen = require('./models/ramenModel');
 const User = require('./models/userModel');
+const ramenRouter = require('./routes/ramensRoute');
 
 const app = express();
 app.use(express.json());
@@ -10,13 +11,9 @@ app.get("/", (req, res) => {
     res.send("Server started on port 8080");
 });
 
-app.get("/api/getramens", (req, res) => {
-    Ramen.find({}).then(data => {
-        res.send(data);
-    }).catch(err => {
-        console.log(err);
-    })
-});
+
+app.use("/api/ramens", ramenRouter);
+
 
 app.post("/api/users/register", (req, res) => {
     const {name, email, password} = req.body;

@@ -14,7 +14,7 @@ function Home() {
         if (!items || items.length === 0) {
             dispatch(getAllRamens());
         }
-    }, [dispatch, items]);
+    }, []);
 
     return (
         <div className='row justify-content-center'>
