@@ -12,7 +12,6 @@ app.get("/", (req, res) => {
 
 app.get("/api/getramens", (req, res) => {
     Ramen.find({}).then(data => {
-        //console.log(docs);
         res.send(data);
     }).catch(err => {
         console.log(err);
