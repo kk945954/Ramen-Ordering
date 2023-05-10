@@ -1,6 +1,10 @@
 import { createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const api = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+});
+
 export const userSlice = createSlice({
     name: "registerOrLogin-User",
     initialState: {
@@ -48,7 +52,7 @@ export const userSlice = createSlice({
 export const registerUser = (user) => async (dispatch) => {
     dispatch(registerUserRequest());
     try {
-        const { data } = await axios.post('/api/users/register', user);
+        const { data } = await api.post('/api/users/register', user);
         dispatch(registerUserSuccess(data));
         window.location.href = '/login';
     } catch (error) {
@@ -60,7 +64,7 @@ export const registerUser = (user) => async (dispatch) => {
 export const loginUser = (user) => async (dispatch) => {
     dispatch(loginUserRequest());
     try {
-        const {data} = await axios.post('/api/users/login', user);
+        const {data} = await api.post('/api/users/login', user);
         dispatch(loginUserSuccess(data));
         localStorage.setItem('currentUser', JSON.stringify(data));
         window.location.href = '/';
