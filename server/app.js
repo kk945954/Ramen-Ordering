@@ -3,16 +3,18 @@ const db = require('./db');
 const Ramen = require('./models/ramenModel');
 const User = require('./models/userModel');
 const ramenRouter = require('./routes/ramensRoute');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.send("Server started on port 8080");
 });
 
-
 app.use("/api/ramens", ramenRouter);
+  
 
 
 app.post("/api/users/register", (req, res) => {

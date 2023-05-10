@@ -7,12 +7,17 @@ const initialState = {
     error: null,
 }
 
-export const getAllRamens = createAsyncThunk("ramens/getAllRamens", async (id = null, { rejectWithValue }) => {
+const api = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+});
+
+export const getAllRamens = createAsyncThunk("ramens/getAllRamens", async() => {
     try {
-        const response = await axios.get('/api/ramens/getallramens');
+        const response = await api.get('/api/ramens/getallramens');
         return response.data;
     } catch (err) {
-        return rejectWithValue(err.response.data);
+        console.error(err);
+        throw err;
     }
 });
 
@@ -33,7 +38,7 @@ const ramenSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             });
-        
+
     },
 })
 
