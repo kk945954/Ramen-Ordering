@@ -74,6 +74,7 @@ const cartSlice = createSlice({
                 autoClose: 3000,
                 hideProgressBar: true,
             });
+            localStorage.clear();
         },
 
     },
