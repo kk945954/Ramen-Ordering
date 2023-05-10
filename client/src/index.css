@@ -282,10 +282,14 @@ p {
     align-items: center;
 }
 
-/* Login page */
+/* Login & register page */
 
 .cardDiv h2,
 label {
+    color: #ffa500;
+}
+
+.signUpLink, .signInLink {
     color: #ffa500;
 }
 

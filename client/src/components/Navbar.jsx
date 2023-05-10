@@ -35,9 +35,6 @@ const Navbar = () => {
                         <li className="nav-item">
                             <a className="nav-link" aria-current="page" href="/">Home</a>
                         </li>
-                        {/* <li className="nav-item">
-                            <a className="nav-link" aria-current="page" href="#">Menu</a>
-                        </li> */}
                         <li className="nav-item">
                             {currentUser
                                 ? <div className="dropdown">
@@ -45,14 +42,11 @@ const Navbar = () => {
                                         {currentUser.name}
                                     </h3>
                                     <ul className="dropdown-menu dropdown-menu-dark m-2">
-                                        <li><a className="dropdown-item" onClick={() => dispatch(logoutUser())} href="#">Logout</a></li>
+                                        <li><a className="dropdown-item" onClick={() => dispatch(logoutUser())} href="/">Logout</a></li>
                                     </ul>
                                 </div>
-                                : <Link to="/login"><a className="nav-link" aria-current="page">Login</a></Link>}
+                                : <Link to="/login"><button className="nav-link" aria-current="page">Login</button></Link>}
                         </li>
-                        {/* <li className="nav-item">
-                            <a className="nav-link" href="#">Cart</a>
-                        </li> */}
                     </ul>
                     <Link to="/cart">
                         <IconButton >

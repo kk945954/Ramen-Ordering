@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../features/userSlice';
-import { Link } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 
 export default function Register() {
-    
+
     const dispatch = useDispatch();
     const [input, setInput] = useState({
         name: '',
@@ -23,7 +23,7 @@ export default function Register() {
         }));
     };
 
-    const isDisabled = !input.name || !input.email || !input.password || !input.confirmPassword ||input.password !== input.confirmPassword;
+    const isDisabled = !input.name || !input.email || !input.password || !input.confirmPassword || input.password !== input.confirmPassword;
 
     function signUp() {
         const user = {
@@ -32,7 +32,6 @@ export default function Register() {
             password: input.password
         };
         dispatch(registerUser(user));
-        console.log(user);
         setInput({
             name: '',
             email: '',
@@ -40,6 +39,12 @@ export default function Register() {
             confirmPassword: ''
         });
     };
+
+    const signUpSuccess = useSelector((state) => state.user.success);
+
+    if (signUpSuccess) {
+        return <Navigate to="/login" />;
+    }
 
     return (
         <section className="vh-100 gradient-custom">
@@ -95,17 +100,10 @@ export default function Register() {
                                         type="submit">Sign Up
                                     </button>
 
-
-                                    {/* <div className="d-flex justify-content-center text-center mt-4 pt-1">
-                                        <a href="#!" className="text-white"><i className="fab fa-facebook-f fa-lg"></i></a>
-                                        <a href="#!" className="text-white"><i className="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                                        <a href="#!" className="text-white"><i className="fab fa-google fa-lg"></i></a>
-                                    </div> */}
-
                                 </div>
 
                                 <div>
-                                    <p className="mb-0">Already have an account? <Link to="/login"><a className="text-white-50">Login here</a></Link>
+                                    <p className="mb-0">Already have an account? <Link className="signInLink" to="/login">Login here</Link>
                                     </p>
                                 </div>
 

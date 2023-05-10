@@ -1,26 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../features/userSlice';
 import Loading from './Loading';
-import { Link } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 
 export default function Login() {
     const dispatch = useDispatch();
     const userState = useSelector((state) => state.user);
-    const { loading, error } = userState;
+    const { loading, error, success } = userState;
     const [input, setInput] = React.useState({
         email: "",
         password: ""
     });
-
-    useEffect(() => {
-        if (localStorage.getItem("currentUser")) {
-            window.location.href = "/";
-        }
-    }, []);
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,12 +25,16 @@ export default function Login() {
 
     const signIn = (e) => {
         dispatch(loginUser(input));
-        console.log(input);
         setInput({
             email: "",
             password: ""
         });
     }
+
+    if (success) {
+        return <Navigate to="/" />;
+    }
+
     return (
         <section className="vh-100 gradient-custom">
             <div className="container py-5 h-100">
@@ -45,9 +42,7 @@ export default function Login() {
                     <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div className="card bg-transparent text-white" style={{ borderRadius: "1rem", borderColor: "#ffa500" }}>
                             <div className="card-body p-5 text-center">
-
                                 <div className="cardDiv mb-md-5 mt-md-4 pb-5">
-
                                     <h2 className="mb-2 text-uppercase">Login</h2>
                                     <p className="text-white mb-5">Please Enter Your Email and Password</p>
                                     <FloatingLabel controlId="floatingInput" label="Email address" className="mb-4">
@@ -72,15 +67,11 @@ export default function Login() {
                                         Your email or password is incorrect
                                     </div>}
                                     {loading && <Loading />}
-
-
                                 </div>
-
                                 <div>
-                                    <p className="mb-0">Don't have an account? <Link to="/register"><a className="text-white-50">Sign Up</a></Link>
+                                    <p className="mb-0">Don't have an account? <Link className="signUpLink" to="/register">Sign Up</Link>
                                     </p>
                                 </div>
-
                             </div>
                         </div>
                     </div>

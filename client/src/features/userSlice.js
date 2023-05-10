@@ -54,7 +54,6 @@ export const registerUser = (user) => async (dispatch) => {
     try {
         const { data } = await api.post('/api/users/register', user);
         dispatch(registerUserSuccess(data));
-        window.location.href = '/login';
     } catch (error) {
         dispatch(registerUserFail(error.message));
     }
@@ -67,7 +66,6 @@ export const loginUser = (user) => async (dispatch) => {
         const { data } = await api.post('/api/users/login', user);
         dispatch(loginUserSuccess(data));
         localStorage.setItem('currentUser', JSON.stringify(data));
-        window.location.href = '/';
     } catch (error) {
         dispatch(loginUserFail(error.message));
     }
@@ -75,7 +73,6 @@ export const loginUser = (user) => async (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('currentUser');
-    window.location.href = '/login';
     localStorage.clear();
 }
 
