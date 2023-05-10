@@ -3,6 +3,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../features/userSlice';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
     
@@ -104,7 +105,7 @@ export default function Register() {
                                 </div>
 
                                 <div>
-                                    <p className="mb-0">Already have an account? <a href="/login" className="text-white-50">Login here</a>
+                                    <p className="mb-0">Already have an account? <Link to="/login"><a className="text-white-50">Login here</a></Link>
                                     </p>
                                 </div>
 

@@ -48,7 +48,7 @@ const Navbar = () => {
                                         <li><a className="dropdown-item" onClick={() => dispatch(logoutUser())} href="#">Logout</a></li>
                                     </ul>
                                 </div>
-                                : <a className="nav-link" aria-current="page" href="/login">Login</a>}
+                                : <Link to="/login"><a className="nav-link" aria-current="page">Login</a></Link>}
                         </li>
                         {/* <li className="nav-item">
                             <a className="nav-link" href="#">Cart</a>

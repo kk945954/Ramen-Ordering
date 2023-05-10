@@ -64,7 +64,7 @@ export const registerUser = (user) => async (dispatch) => {
 export const loginUser = (user) => async (dispatch) => {
     dispatch(loginUserRequest());
     try {
-        const {data} = await api.post('/api/users/login', user);
+        const { data } = await api.post('/api/users/login', user);
         dispatch(loginUserSuccess(data));
         localStorage.setItem('currentUser', JSON.stringify(data));
         window.location.href = '/';

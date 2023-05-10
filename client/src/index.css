@@ -5,6 +5,10 @@ body {
     background-color: #000000e2 !important;
 }
 
+a {
+    text-decoration: none;
+}
+
 .navbar-brand {
     font-size: 3vh;
     color: #000000e2;
@@ -261,7 +265,6 @@ p {
 
 .continue-ordering a,
 .start-your-order a {
-    text-decoration: none;
     display: flex;
     align-items: center;
 }

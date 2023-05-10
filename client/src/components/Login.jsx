@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../features/userSlice';
 import Loading from './Loading';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -76,7 +77,7 @@ export default function Login() {
                                 </div>
 
                                 <div>
-                                    <p className="mb-0">Don't have an account? <a href="/register" className="text-white-50">Sign Up</a>
+                                    <p className="mb-0">Don't have an account? <Link to="/register"><a className="text-white-50">Sign Up</a></Link>
                                     </p>
                                 </div>
 

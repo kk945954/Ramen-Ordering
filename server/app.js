@@ -17,8 +17,13 @@ app.get("/", (req, res) => {
 
 app.use("/api/ramens", ramenRouter);
 app.use("/api/users", userRouter);
-  
 
+
+const port = process.env.PORT;
+
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});
 
 // app.post("/api/users/register", (req, res) => {
 //     const {name, email, password} = req.body;
@@ -52,9 +57,3 @@ app.use("/api/users", userRouter);
 //         return res.status(400).json({error});     
 //     }
 // });
-
-const port = process.env.PORT;
-
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-});
