@@ -3,17 +3,21 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../features/userSlice';
-import { Navigate, Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 export default function Register() {
 
+    const signUpSuccess = useSelector((state) => state.user.success);
     const dispatch = useDispatch();
+
     const [input, setInput] = useState({
         name: '',
         email: '',
         password: '',
         confirmPassword: ''
     });
+
+    const isDisabled = !input.name || !input.email || !input.password || !input.confirmPassword || input.password !== input.confirmPassword;
 
     function onInputChange(e) {
         const { name, value } = e.target;
@@ -22,8 +26,6 @@ export default function Register() {
             [name]: value,
         }));
     };
-
-    const isDisabled = !input.name || !input.email || !input.password || !input.confirmPassword || input.password !== input.confirmPassword;
 
     function signUp() {
         const user = {
@@ -39,12 +41,6 @@ export default function Register() {
             confirmPassword: ''
         });
     };
-
-    const signUpSuccess = useSelector((state) => state.user.success);
-
-    if (signUpSuccess) {
-        return <Navigate to="/login" />;
-    }
 
     return (
         <section className="vh-100 gradient-custom">
@@ -99,6 +95,7 @@ export default function Register() {
                                         onClick={signUp}
                                         type="submit">Sign Up
                                     </button>
+                                    {signUpSuccess && <Navigate to="/login" />}
 
                                 </div>
 

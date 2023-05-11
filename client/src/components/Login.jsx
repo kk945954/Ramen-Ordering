@@ -9,6 +9,7 @@ import { Navigate, Link } from 'react-router-dom';
 export default function Login() {
     const dispatch = useDispatch();
     const userState = useSelector((state) => state.user);
+    const currentUser = useSelector((state) => state.user.currentUser);
     const { loading, error, success } = userState;
     const [input, setInput] = React.useState({
         email: "",
@@ -29,10 +30,6 @@ export default function Login() {
             email: "",
             password: ""
         });
-    }
-
-    if (success) {
-        return <Navigate to="/" />;
     }
 
     return (
@@ -67,6 +64,7 @@ export default function Login() {
                                         Your email or password is incorrect
                                     </div>}
                                     {loading && <Loading />}
+                                    {success && currentUser !== null && <Navigate to="/" />}
                                 </div>
                                 <div>
                                     <p className="mb-0">Don't have an account? <Link className="signUpLink" to="/register">Sign Up</Link>

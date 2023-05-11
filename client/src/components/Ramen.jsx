@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from '../features/cartSlice';
 
 export default function Ramen({ ramen }) {
+    const date = new Date();
     const [size, setSize] = useState("Regular");
     const [quantity, setQuantity] = useState(1);
 

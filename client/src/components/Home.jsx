@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Ramen from './Ramen';
 import { getAllRamens } from '../features/ramenSlice';
 import Loading from './Loading';
+import Footer from './Footer';
 
-function Home() {
+export default function Home() {
 
     const { items, loading, error } = useSelector((state) => state.ramen);
 
@@ -30,8 +31,7 @@ function Home() {
                     );
                 })
             )}
+            <Footer />
         </div>
     )
 }
-
-export default Home
